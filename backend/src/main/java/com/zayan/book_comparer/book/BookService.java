@@ -1,5 +1,6 @@
 package com.zayan.book_comparer.book;
 
+import com.zayan.book_comparer.exception.BookNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,7 +13,8 @@ public class BookService {
      }
 
      public BookDto getBook(long id) {
-          Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Id not found"));
+
+          Book book = bookRepository.findById(id).orElseThrow(() -> new BookNotFoundException("Book with id " + id + " not found"));
 
           return new BookDto(book);
 
