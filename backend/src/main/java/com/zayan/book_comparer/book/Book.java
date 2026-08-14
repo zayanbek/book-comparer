@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Book {
 
      @Id
-     private Long id;
+     private long id;
 
      private String title;
 
@@ -16,14 +16,14 @@ public class Book {
      @Column(columnDefinition = "TEXT")
      private String text;
 
-     @Lob
+     // @Lob
      @Column(columnDefinition = "BYTEA")
      private byte[] image;
 
      public Book() {
      }
 
-     public Book(Long id, String title, String author, String text, byte[] image) {
+     public Book(long id, String title, String author, String text, byte[] image) {
           this.id = id;
           this.title = title;
           this.author = author;
