@@ -1,16 +1,34 @@
 package com.zayan.book_comparer.analysis;
 
+import com.zayan.book_comparer.book.Book;
+
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 public class ProbabilityDistribution {
 
-     Map<String, TokenStatistic> distribution;
+     private final Map<String, TokenStatistic> distribution;
      private static final double EPSILON = 1e-10;
 
      public ProbabilityDistribution(Map<String, TokenStatistic> distribution) {
           this.distribution = distribution;
+     }
+
+     public ProbabilityDistribution(Book book) {
+          // Iterate through the book, update distribution as you go
+          distribution = buildDistribution(book.getText());
+     }
+
+     private static Map<String, TokenStatistic> buildDistribution(String text) {
+          Map<String, TokenStatistic> result = new HashMap<>();
+
+          // tokenize
+          // count
+          // calculate probabilities
+          return result;
+
      }
 
      public double entropy() {
@@ -90,17 +108,8 @@ public class ProbabilityDistribution {
           return dotProduct / (Math.sqrt(magnitudeA) * Math.sqrt(magnitudeB));
      }
 
-
      private static double log2(double x) {
           return Math.log(x) / Math.log(2);
-     }
-
-     public Map<String, TokenStatistic> getDistribution() {
-          return distribution;
-     }
-
-     public void setDistribution(Map<String, TokenStatistic> distribution) {
-          this.distribution = distribution;
      }
 
      public double getProbability(String token) {
