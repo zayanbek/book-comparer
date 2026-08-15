@@ -24,11 +24,23 @@ public class ProbabilityDistribution {
      private static Map<String, TokenStatistic> buildDistribution(String text) {
           Map<String, TokenStatistic> result = new HashMap<>();
 
-          // tokenize
-          // count
-          // calculate probabilities
-          return result;
+          String[] words = text.split("\\s+");
+          int length = words.length;
 
+          for(String word : words) {
+               if (!word.isEmpty()) {
+                    TokenStatistic statistic = result.get(word);
+
+                    if(statistic == null) {
+                         statistic = new TokenStatistic(length);
+                         result.put(word, statistic);
+                    }
+
+                    statistic.increment();
+               }
+          }
+
+          return result;
      }
 
      public double entropy() {
