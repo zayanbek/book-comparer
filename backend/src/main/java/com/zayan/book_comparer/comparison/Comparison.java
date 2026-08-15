@@ -1,9 +1,7 @@
 package com.zayan.book_comparer.comparison;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.zayan.book_comparer.book.Book;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="comparisons")
@@ -12,11 +10,13 @@ public class Comparison {
      @Id
      private long id;
 
-     @Column(name = "book_a_id")
-     private long bookAId;
+     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+     @JoinColumn(name = "book_a_id", nullable = false)
+     private Book bookA;
 
-     @Column(name = "book_b_id")
-     private long bookBId;
+     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+     @JoinColumn(name = "book_b_id", nullable = false)
+     private Book bookB;
 
      @Column(name = "is_complete")
      private boolean isComplete;
@@ -33,6 +33,86 @@ public class Comparison {
      @Column(name = "js_divergence")
      private double jsDivergence;
 
+     public Comparison() {
+     }
 
+     public Comparison(Book bookB, Book bookA) {
+          this.bookB = bookB;
+          this.bookA = bookA;
+     }
 
+     public Comparison(long id, Book bookA, Book bookB, boolean isComplete, double cosineSimilarity, double klDivergenceAB, double klDivergenceBA, double jsDivergence) {
+          this.id = id;
+          this.bookA = bookA;
+          this.bookB = bookB;
+          this.isComplete = isComplete;
+          this.cosineSimilarity = cosineSimilarity;
+          this.klDivergenceAB = klDivergenceAB;
+          this.klDivergenceBA = klDivergenceBA;
+          this.jsDivergence = jsDivergence;
+     }
+
+     public long getId() {
+          return id;
+     }
+
+     public void setId(long id) {
+          this.id = id;
+     }
+
+     public Book getBookA() {
+          return bookA;
+     }
+
+     public void setBookA(Book bookA) {
+          this.bookA = bookA;
+     }
+
+     public Book getBookB() {
+          return bookB;
+     }
+
+     public void setBookB(Book bookB) {
+          this.bookB = bookB;
+     }
+
+     public boolean isComplete() {
+          return isComplete;
+     }
+
+     public void setComplete(boolean complete) {
+          isComplete = complete;
+     }
+
+     public double getCosineSimilarity() {
+          return cosineSimilarity;
+     }
+
+     public void setCosineSimilarity(double cosineSimilarity) {
+          this.cosineSimilarity = cosineSimilarity;
+     }
+
+     public double getKlDivergenceAB() {
+          return klDivergenceAB;
+     }
+
+     public void setKlDivergenceAB(double klDivergenceAB) {
+          this.klDivergenceAB = klDivergenceAB;
+     }
+
+     public double getKlDivergenceBA() {
+          return klDivergenceBA;
+     }
+
+     public void setKlDivergenceBA(double klDivergenceBA) {
+          this.klDivergenceBA = klDivergenceBA;
+     }
+
+     public double getJsDivergence() {
+          return jsDivergence;
+     }
+
+     public void setJsDivergence(double jsDivergence) {
+          this.jsDivergence = jsDivergence;
+     }
 }
