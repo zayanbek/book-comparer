@@ -21,8 +21,8 @@ public class ComparisonService {
      public ComparisonResultDto compare(String bookATitle, String bookBTitle) {
 
           // 1. Find the books
-          Book requestedBookA = bookService.getBookByTitle(bookATitle);
-          Book requestedBookB = bookService.getBookByTitle(bookBTitle);
+          Book requestedBookA = bookService.getBook(bookATitle);
+          Book requestedBookB = bookService.getBook(bookBTitle);
 
           Long idA = requestedBookA.getId();
           Long idB = requestedBookB.getId();
