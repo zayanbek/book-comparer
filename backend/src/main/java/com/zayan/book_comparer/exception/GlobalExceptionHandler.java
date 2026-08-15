@@ -11,8 +11,7 @@ import java.util.Map;
 public class GlobalExceptionHandler {
 
      @ExceptionHandler(BookNotFoundException.class)
-     public ResponseEntity<Map<String, String>> handleInvalidTeacherName(
-             BookNotFoundException ex) {
+     public ResponseEntity<Map<String, String>> handleBookNotFound(BookNotFoundException ex) {
 
           return ResponseEntity
                   .status(HttpStatus.BAD_REQUEST)
@@ -20,5 +19,17 @@ public class GlobalExceptionHandler {
                           "error", "Bad Request",
                           "message", ex.getMessage()
                   ));
+     }
+
+     @ExceptionHandler(BookTitleNotSpecificException.class)
+     public ResponseEntity<Map<String, String>> handleBookTitleNotSpecific(BookTitleNotSpecificException ex) {
+
+          return ResponseEntity
+                  .status(HttpStatus.BAD_REQUEST)
+                  .body(Map.of(
+                          "error", "Bad Request",
+                          "message", ex.getMessage()
+                  ));
+
      }
 }
