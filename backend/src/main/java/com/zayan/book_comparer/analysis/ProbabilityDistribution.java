@@ -1,6 +1,8 @@
 package com.zayan.book_comparer.analysis;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class ProbabilityDistribution {
 
@@ -40,15 +42,52 @@ public class ProbabilityDistribution {
      }
 
      public double jsDivergence(ProbabilityDistribution otherDistribution) {
+          double divergence = 0.0;
 
+          // get a set of all unique tokens
+          Set<String> tokens = new HashSet<>(distribution.keySet());
+          tokens.addAll(otherDistribution.distribution.keySet());
 
+          for (String token : tokens) {
+
+               double p = getProbability(token);
+               double q = otherDistribution.getProbability(token);
+
+               double m = (p + q) / 2.0;
+
+               if (p >= EPSILON) divergence += 0.5 * p * log2(p / m);
+
+               if (q >= EPSILON) divergence += 0.5 * q * log2(q / m);
+
+          }
+
+          return divergence;
      }
 
      public double cosineSimilarity(ProbabilityDistribution otherDistribution) {
 
+          double dotProduct = 0.0;
+          double magnitudeA = 0.0;
+          double magnitudeB = 0.0;
 
+          Set<String> tokens = new HashSet<>(distribution.keySet());
+          tokens.addAll(otherDistribution.distribution.keySet());
 
-          return -3.14;
+          for (String token : tokens) {
+
+               double a = getProbability(token);
+               double b = otherDistribution.getProbability(token);
+
+               dotProduct += a * b;
+               magnitudeA += a * a;
+               magnitudeB += b * b;
+          }
+
+          if (magnitudeA < EPSILON || magnitudeB < EPSILON) {
+               return 0.0;
+          }
+
+          return dotProduct / (Math.sqrt(magnitudeA) * Math.sqrt(magnitudeB));
      }
 
 
@@ -67,9 +106,7 @@ public class ProbabilityDistribution {
      public double getProbability(String token) {
           TokenStatistic statistic = distribution.get(token);
 
-          if (statistic == null) {
-               return 0.0;
-          }
+          if (statistic == null) return 0.0;
 
           return statistic.getProbability();
      }
