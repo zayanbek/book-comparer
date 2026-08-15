@@ -13,10 +13,17 @@ public class BookService {
      }
 
      public BookDto getBook(long id) {
-
           Book book = bookRepository.findById(id).orElseThrow(() -> new BookNotFoundException("Book with id " + id + " not found"));
 
           return new BookDto(book);
+     }
 
+     public Book getBookByTitle(String title) {
+
+          return bookRepository.findByTitle(title)
+                  .orElseThrow(() ->
+                          new BookNotFoundException(
+                                  "Book with title " + title + " not found"
+                          ));
      }
 }
