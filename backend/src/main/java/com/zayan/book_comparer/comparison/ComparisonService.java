@@ -38,28 +38,19 @@ public class ComparisonService {
           boolean reversed = idA > idB;
 
           // 3. Store the smaller ID as book_a
-          Book storedBookA;
-          Book storedBookB;
-
-          if (reversed) {
-               storedBookA = requestedBookB;
-               storedBookB = requestedBookA;
-          } else {
-               storedBookA = requestedBookA;
-               storedBookB = requestedBookB;
-          }
+          Long storedIdA = Math.min(idA, idB);
+          Long storedIdB = Math.max(idA, idB);
 
           // 4. Look for an existing comparison
-          Comparison comparison =
-                  comparisonRepository
-                          .findByBookAIdAndBookBId(
-                                  storedBookA.getId(),
-                                  storedBookB.getId()
-                          )
-                          .orElse(null);
+          Comparison comparison = comparisonRepository
+                  .findByBookAIdAndBookBId(storedIdA, storedIdB)
+                  .orElse(null);
 
           // 5. If it doesn't exist, create it
           if (comparison == null) {
+
+               Book storedBookA = reversed ? requestedBookB : requestedBookA;
+               Book storedBookB = reversed ? requestedBookA : requestedBookB;
 
                comparison = new Comparison(storedBookA, storedBookB);
 
