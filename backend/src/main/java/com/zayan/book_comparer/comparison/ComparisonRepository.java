@@ -8,5 +8,7 @@ import java.util.Optional;
 
 @Repository
 public interface ComparisonRepository extends JpaRepository<Comparison, Long> {
+
      Optional<Comparison> findByBookAIdAndBookBId(Long bookAId, Long bookBId);
+
 }
