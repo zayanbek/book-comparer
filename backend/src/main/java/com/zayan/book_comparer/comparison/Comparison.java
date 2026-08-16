@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 public class Comparison {
 
      @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
      private long id;
 
      @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -36,9 +37,9 @@ public class Comparison {
      public Comparison() {
      }
 
-     public Comparison(Book bookB, Book bookA) {
-          this.bookB = bookB;
+     public Comparison(Book bookA, Book bookB) {
           this.bookA = bookA;
+          this.bookB = bookB;
      }
 
      public Comparison(long id, Book bookA, Book bookB, boolean isComplete, double cosineSimilarity, double klDivergenceAB, double klDivergenceBA, double jsDivergence) {
