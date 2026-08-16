@@ -19,7 +19,7 @@ public class TokenStatistic {
 
      public void increment() {
           frequency += 1;
-          probability = frequency / totalLength;
+          probability = (double) frequency / totalLength;
      }
 
      public int getFrequency() {
