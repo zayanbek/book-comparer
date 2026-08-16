@@ -17,7 +17,6 @@ public class ProbabilityDistribution {
      }
 
      public ProbabilityDistribution(Book book) {
-          // Iterate through the book, update distribution as you go
           distribution = buildDistribution(book.getText());
      }
 
@@ -130,5 +129,22 @@ public class ProbabilityDistribution {
           if (statistic == null) return 0.0;
 
           return statistic.getProbability();
+     }
+
+     @Override
+     public String toString() {
+          StringBuilder result = new StringBuilder("[\n");
+
+          for (Map.Entry<String, TokenStatistic> entry : distribution.entrySet()) {
+               result.append("  ")
+                       .append(entry.getKey())
+                       .append(": ")
+                       .append(entry.getValue().getFrequency())
+                       .append(", ");
+          }
+
+          result.append("]");
+
+          return result.toString();
      }
 }
