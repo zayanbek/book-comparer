@@ -1,0 +1,15 @@
+footer {
+  display: grid;
+  place-items: center;
+
+  min-height: 50px;
+
+  background-color: var(--background);
+  border-top: 1px solid var(--border);
+}
+
+.footer-content {
+  display: grid;
+  place-items: center;
+  gap: 5px;
+}
