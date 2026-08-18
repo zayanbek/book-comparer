@@ -5,6 +5,9 @@ import { useState } from "react";
 import Header from "./components/header/Header";
 import SearchBar from "./components/searchBar/SearchBar";
 import Footer from "./components/footer/Footer";
+import Carousel from "./components/carousel/Carousel";
+import Selection from "./components/selection/Selection";
+import Metrics from "./components/metrics/Metrics";
 
 export default function App() {
   const [search, setSearch] = useState("");
@@ -15,13 +18,9 @@ export default function App() {
 
       <main className="main">
         <SearchBar value={search} onChange={setSearch} />
-        {/*
-        
         <Carousel />
-        <Comparison />
+        <Selection />
         <Metrics />
-
-        */}
       </main>
 
       <Footer />
