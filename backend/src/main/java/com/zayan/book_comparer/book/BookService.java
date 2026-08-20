@@ -56,14 +56,20 @@ public class BookService {
           return partialMatches.get(0);
      }
 
-     public List<BookDto> getBook(String title, int page, int size) {
+     public List<BookSearchDto> getBook(String title, int page, int size) {
 
           Pageable pageable = PageRequest.of(page, size);
-          Page<Book> books = bookRepository.findByTitleContainingIgnoreCase(title, pageable);
+
+          Page<BookSearchProjection> books = bookRepository.findByTitleContainingIgnoreCase(title, pageable);
 
           return books.getContent()
                   .stream()
-                  .map(book -> new BookDto(book))
+                  .map(book -> new BookSearchDto(
+                          book.getId(),
+                          book.getTitle(),
+                          book.getAuthor(),
+                          book.getImage()
+                  ))
                   .toList();
      }
 }
