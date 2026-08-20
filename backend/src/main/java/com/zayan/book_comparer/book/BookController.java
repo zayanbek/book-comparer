@@ -26,7 +26,7 @@ public class BookController {
      }
 
      @GetMapping("/search")
-     public List<BookDto> searchBooks(
+     public List<BookSearchDto> searchBooks(
              @RequestParam String title,
              @RequestParam Integer page,
              @RequestParam Integer size
