@@ -1,0 +1,123 @@
+.book-carousel {
+  display: flex;
+  gap: 18px;
+
+  width: 100%;
+
+  overflow: hidden;
+}
+
+.book-card {
+  flex: 0 0 155px;
+
+  width: 155px;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+  color: inherit;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.cover-wrapper {
+  position: relative;
+
+  width: 155px;
+  height: 225px;
+
+  overflow: hidden;
+
+  border: 2px solid transparent;
+  border-radius: 8px;
+
+  background: var(--card);
+
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.cover-wrapper img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.book-card:hover .cover-wrapper {
+  transform: translateY(-4px);
+}
+
+.book-card.selected .cover-wrapper {
+  border-color: var(--foreground);
+
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+}
+
+.selected-badge {
+  position: absolute;
+
+  top: 9px;
+  right: 9px;
+
+  display: grid;
+
+  width: 27px;
+  height: 27px;
+
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: var(--foreground);
+  color: var(--background);
+
+  font-size: 13px;
+}
+
+.book-info {
+  padding-top: 10px;
+}
+
+.book-info h3 {
+  margin: 0;
+
+  overflow: hidden;
+
+  font-family: "Source Serif 4", serif;
+  font-size: 14px;
+  font-weight: 500;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.book-info p {
+  margin: 4px 0 0;
+
+  overflow: hidden;
+
+  color: var(--muted-foreground);
+
+  font-size: 11px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.carousel-message {
+  width: 100%;
+  padding: 40px;
+
+  color: var(--muted-foreground);
+
+  text-align: center;
+}
