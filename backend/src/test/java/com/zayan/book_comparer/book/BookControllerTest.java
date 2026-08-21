@@ -24,10 +24,13 @@ class BookControllerTest {
      @Test
      void getBookById_shouldReturnCorrectBook() throws Exception {
 
-          BookDto book = new BookDto();
-          book.setId(1L);
-          book.setTitle("The Odyssey");
-          book.setAuthor("Homer");
+        Book book = new Book();
+        book.setId(1L);
+        book.setTitle("The Odyssey");
+        book.setAuthor("Homer");
+
+        when(bookService.getBook(1L))
+                .thenReturn(book);
 
           when(bookService.getBook(1L))
                   .thenReturn(book);
