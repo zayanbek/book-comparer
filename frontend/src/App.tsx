@@ -6,9 +6,10 @@ import Header from "./components/header/Header";
 import SearchBar from "./components/searchBar/SearchBar";
 import Footer from "./components/footer/Footer";
 import BookCarousel from "./components/carousel/BookCarousel";
-import Selection from "./components/selection/Selection";
+import Selection from "./components/bookSelection/BookSelection";
 import Metrics from "./components/metrics/Metrics";
 import type { BookSearchResult } from "./api/books";
+import BookSelection from "./components/bookSelection/BookSelection";
 
 export default function App() {
   const [search, setSearch] = useState("");
@@ -25,7 +26,6 @@ export default function App() {
       if (current.length >= 2) {
         return current;
       }
-
       // Add book
       return [...current, book];
     });
@@ -42,7 +42,7 @@ export default function App() {
           selectedBooks={selectedBooks}
           onToggleBook={toggleBook}
         />
-        <Selection />
+        <BookSelection selectedBooks={selectedBooks} />
         <Metrics />
       </main>
 
