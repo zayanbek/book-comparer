@@ -37,7 +37,7 @@ class BookServiceTest {
                   .thenReturn(Optional.of(book));
 
           // Act
-          BookDto result = bookService.getBook(1L);
+          Book result = bookService.getBook(1L);
 
           // Assert
           assertEquals(1L, result.getId());
