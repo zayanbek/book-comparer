@@ -1,0 +1,78 @@
+.metrics {
+  width: 100%;
+}
+
+.metrics h2 {
+  margin: 0 0 12px;
+  color: var(--foreground);
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+
+  width: 100%;
+}
+
+.metric {
+  display: flex;
+  gap: 14px;
+
+  padding: 18px;
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+
+  background-color: var(--card);
+  color: var(--foreground);
+
+  box-sizing: border-box;
+}
+
+.metric-number {
+  color: var(--muted-foreground);
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+
+  flex-shrink: 0;
+}
+
+.metric-content {
+  min-width: 0;
+}
+
+.metric-content h3 {
+  margin: 0;
+
+  color: var(--foreground);
+
+  font-family: "Source Serif 4", serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.metric-value {
+  margin-top: 8px;
+
+  color: var(--foreground);
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 24px;
+}
+
+.metric-content p {
+  margin: 8px 0 0;
+
+  color: var(--muted-foreground);
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+}
