@@ -15,8 +15,15 @@ public class ComparisonController {
           this.comparisonService = comparisonService;
      }
 
+     /*
      @GetMapping
      public ComparisonResultDto compare(@RequestParam String bookA, @RequestParam String bookB) {
           return comparisonService.compare(bookA, bookB);
+     }
+     */
+
+     @GetMapping
+     public ComparisonResultDto compare(@RequestParam Long bookAId, @RequestParam Long bookBId) {
+          return comparisonService.compare(bookAId, bookBId);
      }
 }
