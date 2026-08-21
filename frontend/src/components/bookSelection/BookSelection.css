@@ -25,6 +25,8 @@
 
   padding: 14px;
 
+  position: relative;
+
   border: 1px solid var(--border);
   border-radius: var(--radius);
 
@@ -90,4 +92,33 @@
 
 .selected-book.empty p {
   margin: 0;
+}
+
+.remove-book-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  padding: 5px 10px;
+
+  border: none;
+  border-radius: var(--radius);
+
+  background-color: var(--destructive);
+  color: var(--destructive-foreground);
+
+  font-family: "Source Serif 4", serif;
+  font-size: 12px;
+
+  cursor: pointer;
+
+  transition: opacity 0.15s ease;
+}
+
+.remove-book-button:hover {
+  opacity: 0.85;
+}
+
+.remove-book-button:active {
+  transform: scale(0.95);
 }
