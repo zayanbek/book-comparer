@@ -1,10 +1,15 @@
 .book-carousel {
   display: flex;
-  gap: 18px;
+  flex-direction: row;
 
+  gap: 18px;
   width: 100%;
 
-  overflow: hidden;
+  padding-top: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  box-sizing: border-box;
 }
 
 .book-card {

@@ -1,3 +1,5 @@
+import "./BookCarousel.css";
+
 import { useEffect, useRef, useState } from "react";
 import BookCard from "./bookCard/BookCard";
 import { searchBooks, type BookSearchResult } from "../../api/books";
@@ -8,7 +10,7 @@ interface BookCarouselProps {
   onToggleBook: (book: BookSearchResult) => void;
 }
 
-const CARD_WIDTH = 155;
+const CARD_WIDTH = 180;
 const CARD_GAP = 18;
 
 function BookCarousel({
