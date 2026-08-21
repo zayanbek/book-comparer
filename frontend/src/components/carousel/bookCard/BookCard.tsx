@@ -1,3 +1,5 @@
+import "./BookCard.css";
+
 import type { BookSearchResult } from "../../../api/books";
 
 interface BookCardProps {
@@ -14,7 +16,10 @@ function BookCard({ book, selected, onClick }: BookCardProps) {
       onClick={onClick}
     >
       <div className="cover-wrapper">
-        <img src={book.image} alt={`${book.title} cover`} />
+        <img
+          src={`data:image/jpeg;base64,${book.image}`}
+          alt={`${book.title} cover`}
+        />
 
         {selected && <span className="selected-badge">✓</span>}
       </div>
