@@ -33,7 +33,7 @@ class ComparisonControllerTest {
                   0.3
           );
 
-          when(comparisonService.compare("odyssey", "iliad"))
+          when(comparisonService.compare(1L, 2L))
                   .thenReturn(result);
 
           mockMvc.perform(
@@ -50,7 +50,7 @@ class ComparisonControllerTest {
                   .andExpect(jsonPath("$.jsDivergence").value(0.3));
 
           verify(comparisonService)
-                  .compare("odyssey", "iliad");
+                  .compare(1L, 2L);
      }
 
 
@@ -66,7 +66,7 @@ class ComparisonControllerTest {
                   0.3
           );
 
-          when(comparisonService.compare("iliad", "odyssey"))
+          when(comparisonService.compare(2L, 1L))
                   .thenReturn(result);
 
           mockMvc.perform(
@@ -83,7 +83,7 @@ class ComparisonControllerTest {
                   .andExpect(jsonPath("$.jsDivergence").value(0.3));
 
           verify(comparisonService)
-                  .compare("iliad", "odyssey");
+                  .compare(2L, 1L);
      }
 
 
