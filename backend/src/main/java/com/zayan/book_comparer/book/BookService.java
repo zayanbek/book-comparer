@@ -19,14 +19,14 @@ public class BookService {
           this.bookRepository = bookRepository;
      }
 
-     public BookDto getBook(long id) {
+     public Book getBook(long id) {
           Book book = bookRepository.findById(id)
                   .orElseThrow(() ->
                           new BookNotFoundException(
                                   "Book with id " + id + " not found"
                           ));
 
-          return new BookDto(book);
+          return book;
      }
 
      public Book getBook(String title) {
