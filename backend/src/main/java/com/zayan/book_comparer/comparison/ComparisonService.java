@@ -18,28 +18,24 @@ public class ComparisonService {
      }
 
      @Transactional
-     public ComparisonResultDto compare(String bookATitle, String bookBTitle) {
+     public ComparisonResultDto compare(Long bookAId, Long bookBId) {
 
-          // 1. Find the books
-          Book requestedBookA = bookService.getBook(bookATitle);
-          Book requestedBookB = bookService.getBook(bookBTitle);
-
-          Long idA = requestedBookA.getId();
-          Long idB = requestedBookB.getId();
+          Book requestedBookA = bookService.getBook(bookAId);
+          Book requestedBookB = bookService.getBook(bookBId);
 
           // Don't allow comparing a book with itself
-          if (idA.equals(idB)) {
+          if (bookAId.equals(bookBId)) {
                throw new IllegalArgumentException(
                        "Cannot compare a book with itself"
                );
           }
 
           // 2. Determine whether the request is reversed
-          boolean reversed = idA > idB;
+          boolean reversed = bookAId > bookBId;
 
           // 3. Store the smaller ID as book_a
-          Long storedIdA = Math.min(idA, idB);
-          Long storedIdB = Math.max(idA, idB);
+          Long storedIdA = Math.min(bookAId, bookBId);
+          Long storedIdB = Math.max(bookAId, bookBId);
 
           // 4. Look for an existing comparison
           Comparison comparison = comparisonRepository
